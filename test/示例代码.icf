@@ -1,0 +1,18 @@
+PA12{
+    mode:OUT_PP;    // 推挽输出
+    f:50MHz         // 初始工作频率50MHz
+    default:1;      // 初始状态为高电平
+}
+
+PB1{
+    mode:IPU;       // 上拉输入
+    f:50MHz;        // 初始工作频率50MHz
+    default:0;      // 初始状态为低电平
+    INPT:{          // 中断引入
+        type:Rising;        // 中断触发条件：上升沿
+        priority:0 0;       // 执行优先级
+        func:[              // 执行体
+            turn PA12;      // 翻转PA12端口电平
+        ];
+    }
+}
